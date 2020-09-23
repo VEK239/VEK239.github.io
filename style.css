@@ -137,7 +137,7 @@ ul {
     width: 45%;
 }
 
-@media (max-width: 2000px) {
+@media screen and (max-width: 2000px) {
     body {
         width: 450px;
     }
