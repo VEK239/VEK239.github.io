@@ -99,7 +99,7 @@ header {
 }
 
 .city .main_info .degrees {
-    font-size: 2.1vw;
+    font-size: 2vw;
     color: #7c7c7c;
 }
 
@@ -137,15 +137,7 @@ ul {
     width: 45%;
 }
 
-
-
-@media screen and (max-width: 900px) {
-    body {
-        width: 670px;
-    }
-}
-
-@media screen and (max-width: 700px) {
+@media (max-width: 850px) {
     body {
         width: 450px;
     }
@@ -168,6 +160,27 @@ ul {
         height: 43px;
         background: url("update.png") no-repeat;
         border: 0;
+    }
+
+    .main_city {
+        display: grid;
+        grid-template-columns: 100%;
+        grid-template-rows: 45% 45%;
+        justify-content: space-between;
+    }
+
+    .other_cities {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .city {
+        width: 100%;
+    }
+
+    .city .main_info .degrees {
+        font-size: 5vw;
+        color: #7c7c7c;
     }
 
 }
