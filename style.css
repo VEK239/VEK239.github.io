@@ -104,6 +104,7 @@ header {
 }
 
 .city .main_info img {
+    height: 100%;
     margin-right: 30%;
 }
 
