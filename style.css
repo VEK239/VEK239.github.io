@@ -137,7 +137,7 @@ ul {
     width: 45%;
 }
 
-@media screen and (max-width: 2000px) {
+@media screen and (max-width: 850px) {
     body {
         width: 450px;
     }
@@ -179,7 +179,7 @@ ul {
     }
 
     .city .main_info .degrees {
-        font-size: 5vw;
+        font-size: 50px;
         color: #7c7c7c;
     }
 
