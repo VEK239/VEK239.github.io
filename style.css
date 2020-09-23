@@ -165,7 +165,7 @@ ul {
     .main_city {
         display: grid;
         grid-template-columns: 100%;
-        grid-template-rows: 45% 45%;
+        grid-template-rows: 50% 50%;
         justify-content: space-between;
     }
 
