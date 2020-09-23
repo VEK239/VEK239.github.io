@@ -37,8 +37,8 @@ header {
 
 .left_main_city img {
     float: left;
-    width: 30%;
-    height: 30%;
+    width: 30px;
+    height: 30px;
     margin-right: 20%;
     margin-bottom: 3%;
 }
