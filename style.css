@@ -37,8 +37,8 @@ header {
 
 .left_main_city img {
     float: left;
-    width: 30%;
-    height: 100%;
+    max-width: 130px;
+    height: auto;
     margin-right: 20%;
     margin-bottom: 3%;
 }
@@ -104,7 +104,8 @@ header {
 }
 
 .city .main_info img {
-    height: 100%;
+    max-width: 40px;
+    height: auto;
     margin-right: 30%;
 }
 
