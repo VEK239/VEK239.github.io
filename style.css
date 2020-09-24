@@ -169,6 +169,7 @@ ul {
         display: grid;
         grid-template-columns: 100%;
         grid-template-rows: 50% 50%;
+        margin-bottom: 10%;
     }
 
     .other_cities {
