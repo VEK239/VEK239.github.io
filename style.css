@@ -5,6 +5,11 @@ body {
     color: #708089;
 }
 
+h3 {
+    margin: 0;
+    font-weight: normal;
+}
+
 header {
     margin-top: 2%;
     margin-bottom: 2%;
@@ -105,8 +110,8 @@ header {
 }
 
 .city .main_info img {
-    max-width: auto;
-    height: 40px;
+    max-height: 40px;
+    width: auto;
     margin-right: 30%;
 }
 
@@ -117,9 +122,14 @@ header {
 }
 
 ul {
+    list-style-type: none;
     margin-top: 0;
     margin-left: 0;
     padding-left: 0;
+}
+
+h2 {
+    font-size: xx-large;
 }
 
 .weather_line {
@@ -186,4 +196,21 @@ ul {
         color: #7c7c7c;
     }
 
+    .favorite_part {
+        margin-top: 2%;
+        margin-bottom: 2%;
+        display: grid;
+        grid-template-columns: 100%;
+        grid-template-rows: 50% 50%;
+    }
+
+    .add_new_city {
+        display: flex;
+        justify-content: flex-start;
+        margin: auto;
+        width: 100%;
+    }
+    .add_new_city input {
+        width: 100%;
+    }
 }
