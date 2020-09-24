@@ -168,6 +168,9 @@ ul {
         grid-template-rows: 50% 50%;
     }
 
+    .main_city .left_main_city .main_info .degrees {
+        padding-left: 20%;
+    }
     .other_cities {
         display: flex;
         flex-direction: column;
