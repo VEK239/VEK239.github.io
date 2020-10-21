@@ -38,7 +38,7 @@ async function updateWeatherHere() {
                 weatherHere.innerHTML = "";
                 weatherHere.append(weatherHereFunc(weather))
             })
-    }, await weatherAPI.getByCityName('Saint-Petersburg').then(weather => {
+    }, () => weatherAPI.getByCityName("Saint%20Petersburg").then(weather => {
         weatherHere.innerHTML = "";
         weatherHere.append(weatherHereFunc(weather))
     }))
