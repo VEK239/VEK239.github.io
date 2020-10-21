@@ -82,6 +82,7 @@ const addToFavorites = async evt => {
     evt.preventDefault();
     const searchInput = document.getElementById('add_new_city');
     const cityName = searchInput.value.trim();
+    document.querySelector('#add_new_city').innerText = '';
     const response = await weatherAPI.getByCityName(cityName);
     console.log(response);
 
@@ -96,7 +97,7 @@ const addToFavorites = async evt => {
     if (!exist) {
         if (response.cod === 200) {
             const favoritesList = JSON.parse(localStorage.getItem('favoritesList'));
-            localStorage.setItem('favoritesList', JSON.stringify([cityName, ...favoritesList]));
+            localStorage.setItem('favoritesList', JSON.stringify([response.name, ...favoritesList]));
             updateWeatherFavorites()
         } else if (response.cod === 404) {
             alert(`${cityName} not found`);
