@@ -82,7 +82,7 @@ const addToFavorites = async evt => {
     evt.preventDefault();
     const searchInput = document.getElementById('add_new_city');
     const cityName = searchInput.value.trim();
-    document.querySelector('#add_new_city').innerText = '';
+    document.getElementById('add_new_city').value = '';
     const response = await weatherAPI.getByCityName(cityName);
     console.log(response);
 
