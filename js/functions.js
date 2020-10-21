@@ -28,7 +28,6 @@ const weatherCityFunc = (weather) => {
 };
 
 async function updateWeatherHere() {
-    console.log('in update weather here');
     weatherHere.innerHTML = "";
     const waitingCity = weatherHereWaiting();
     weatherHere.append(waitingCity);
@@ -78,14 +77,11 @@ const removeFromFavorites = evt => {
 };
 
 const addToFavorites = async evt => {
-    console.log('in add to favorites');
     evt.preventDefault();
     const searchInput = document.getElementById('add_new_city');
     const cityName = searchInput.value.trim();
-    document.getElementById('add_new_city').value = '';
+    searchInput.value = '';
     const response = await weatherAPI.getByCityName(cityName);
-    console.log(response);
-
     let exist = false;
 
     const list = JSON.parse(localStorage.getItem('favoritesList'));
@@ -99,16 +95,12 @@ const addToFavorites = async evt => {
             const favoritesList = JSON.parse(localStorage.getItem('favoritesList'));
             localStorage.setItem('favoritesList', JSON.stringify([response.name, ...favoritesList]));
             updateWeatherFavorites()
-        } else if (response.cod === 404) {
-            alert(`${cityName} not found`);
-            searchInput.value = ''
         }
     }
 };
 
 const updateWeatherFavorites = () => {
     const favoritesList = JSON.parse(localStorage.getItem('favoritesList'));
-    console.log(favoritesList);
     let citiesToAdd = [], citiesElementToRemove = [];
     for (let city of favoritesList) {
         const cityName = city;
@@ -116,7 +108,6 @@ const updateWeatherFavorites = () => {
             citiesToAdd.push(cityName)
         }
     }
-    console.log(citiesToAdd);
     for (const cityElement of weatherCity.children) {
         const thisCityName = cityElement.querySelector('.city_name').innerText;
         if (!(favoritesList.includes(thisCityName)))
@@ -126,10 +117,8 @@ const updateWeatherFavorites = () => {
     citiesToAdd.forEach(cityToAdd => {
         weatherCity.append(weatherCityWaiting(cityToAdd));
         const newCityElement = weatherCity.querySelector(`.weather_city[cityName=${cityToAdd}]`);
-        console.log(newCityElement);
         weatherAPI.getByCityName(cityToAdd)
             .then(weather =>
                 weatherCity.replaceChild(weatherCityFunc(weather), newCityElement))
-            .catch(() => alert('Something went wrong... Please refresh the page'))
     })
 };
