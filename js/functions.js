@@ -27,7 +27,7 @@ const weatherCityFunc = (weather) => {
     return newWeatherCity
 };
 
-function updateWeatherHere() {
+async function updateWeatherHere() {
     console.log('in update weather here');
     weatherHere.innerHTML = "";
     const waitingCity = weatherHereWaiting();
@@ -38,7 +38,10 @@ function updateWeatherHere() {
                 weatherHere.innerHTML = "";
                 weatherHere.append(weatherHereFunc(weather))
             })
-    })
+    }, await weatherAPI.getByCityName('Saint-Petersburg').then(weather => {
+        weatherHere.innerHTML = "";
+        weatherHere.append(weatherHereFunc(weather))
+    }))
 }
 
 const setWeatherParameters = (element, weatherObject) => {
