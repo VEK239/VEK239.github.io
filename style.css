@@ -40,13 +40,17 @@ header {
 }
 
 .main_city .left_main_city .main_info .degrees {
-    padding-left: 20%;
+    /*padding-left: 20%;*/
 }
 
 .left_main_city img {
     float: left;
-    width: auto;
-    max-height: 130px;
+    width: 100px;
+
+}
+
+.waiting .refresh-icon {
+    max-width: 200px;
 }
 
 .city_name {
@@ -63,7 +67,7 @@ header {
     margin: auto;
 }
 
-.button_sign {
+.button_sign, .delete-button {
     margin-top: auto;
     margin-bottom: auto;
     height: 30px;
@@ -100,23 +104,26 @@ header {
     border: 0;
 }
 
-.city .main_info {
+.weather_city .main_info {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    max-width: available;
 }
 
-.city .main_info .degrees {
+.weather_city .main_info .degrees {
     font-size: 2vw;
     color: #7c7c7c;
 }
 
-.city .main_info img {
+.weather_city .main_info img {
     max-height: 40px;
     width: auto;
-    margin-right: 30%;
 }
 
+.weather_city {
+    flex-basis: 45%;
+}
 
 .weather_info {
     display: flex;
@@ -134,7 +141,7 @@ h2 {
     font-size: xx-large;
 }
 
-.weather_line {
+.weather_info li {
     margin: 1.5% 0;
     padding: 1.7% 2.5%;
     display: flex;
@@ -148,9 +155,6 @@ h2 {
     display: flex;
 }
 
-.city {
-    width: 45%;
-}
 
 @media screen and (max-width: 1000px) {
     body {
@@ -173,7 +177,7 @@ h2 {
         display: block;
         width: 50px;
         height: 43px;
-        background: url("update.png") no-repeat;
+        background: url("img/update.png") no-repeat;
         border: 0;
     }
 

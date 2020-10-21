@@ -4,6 +4,9 @@
 
     <meta charset="utf-8">
     <link rel="stylesheet" href="style.css">
+    <script type="text/javascript" src="js/weatherAPI.js"></script>
+    <script type="text/javascript" src="js/functions.js"></script>
+    <title>Weather web page</title>
 </head>
 
 <body>
@@ -15,418 +18,114 @@
 </header>
 <main>
 
-    <div class="main_city">
-        <div class="left_main_city">
-            <h2 class="city_name">
-                Saint-Petersburg
-            </h2>
-            <div class="main_info">
-                <img src="weatherforec.jpg" alt="sunny">
-                <div class="degrees">
-                    8°C
-                </div>
-            </div>
-        </div>
-        <div class="weather_info">
-            <ul>
-                <li class="weather_line">
-                    <div class="name">
-                        Wind
-                    </div>
-                    <div class="info">
-                        Moderate breeze, 6.0 m/s, North-northwest
-                    </div>
-                </li>
-                <li class="weather_line">
-                    <div class="name">
-                        Cloudiness
-                    </div>
-                    <div class="info">
-                        Broken clouds
-                    </div>
-                </li>
-                <li class="weather_line">
-                    <div class="name">
-                        Pressure
-                    </div>
-                    <div class="info">
-                        1013 hpa
-                    </div>
-                </li>
-                <li class="weather_line">
-                    <div class="name">
-                        Humidity
-                    </div>
-                    <div class="info">
-                        52 %
-                    </div>
-                </li>
-                <li class="weather_line">
-                    <div class="name">
-                        Coordinates
-                    </div>
-                    <div class="info">
-                        [59.88, 30.25]
-                    </div>
-                </li>
-            </ul>
-        </div>
-
-    </div>
+    <section class="main_city"></section>
 
     <div class="favorite_part">
         <h2 class="favorite">Favorite cities</h2>
         <div class="add_new_city">
-            <input type="text" placeholder="Add new city">
+            <label for="add_new_city"></label><input id="add_new_city" type="text" placeholder="Add new city">
             <button class="button_sign">&plus;</button>
         </div>
     </div>
 
-    <ul class="other_cities">
-        <li class="city">
-            <div class="main_info">
-                <h3 class="city_name">
-                    Moscow
-                </h3>
-                <div class="degrees">
-                    8°C
-                </div>
-                <img src="weatherforec.jpg" alt="sunny">
-                <button class="button_sign">&times;</button>
-            </div>
-            <div class="weather_info">
-                <ul>
-                    <li class="weather_line">
-                        <div class="name">
-                            Wind
-                        </div>
-                        <div class="info">
-                            Moderate breeze, 6.0 m/s, North-northwest
-                        </div>
-                    </li>
-                    <li class="weather_line">
-                        <div class="name">
-                            Cloudiness
-                        </div>
-                        <div class="info">
-                            Broken clouds
-                        </div>
-                    </li>
-                    <li class="weather_line">
-                        <div class="name">
-                            Pressure
-                        </div>
-                        <div class="info">
-                            1013 hpa
-                        </div>
-                    </li>
-                    <li class="weather_line">
-                        <div class="name">
-                            Humidity
-                        </div>
-                        <div class="info">
-                            52 %
-                        </div>
-                    </li>
-                    <li class="weather_line">
-                        <div class="name">
-                            Coordinates
-                        </div>
-                        <div class="info">
-                            [59.88, 30.25]
-                        </div>
-                    </li>
-                </ul>
-            </div>
+    <ul class="other_cities"></ul>
 
-        </li>
-        <li class="city">
-            <div class="main_info">
-                <h3 class="city_name">
-                    Moscow
-                </h3>
-                <div class="degrees">
-                    8°C
-                </div>
-                <img src="weatherforec.jpg" alt="sunny">
-                <button class="button_sign">&times;</button>
-            </div>
-            <div class="weather_info">
-                <ul>
-                    <li class="weather_line">
-                        <div class="name">
-                            Wind
-                        </div>
-                        <div class="info">
-                            Moderate breeze, 6.0 m/s, North-northwest
-                        </div>
-                    </li>
-                    <li class="weather_line">
-                        <div class="name">
-                            Cloudiness
-                        </div>
-                        <div class="info">
-                            Broken clouds
-                        </div>
-                    </li>
-                    <li class="weather_line">
-                        <div class="name">
-                            Pressure
-                        </div>
-                        <div class="info">
-                            1013 hpa
-                        </div>
-                    </li>
-                    <li class="weather_line">
-                        <div class="name">
-                            Humidity
-                        </div>
-                        <div class="info">
-                            52 %
-                        </div>
-                    </li>
-                    <li class="weather_line">
-                        <div class="name">
-                            Coordinates
-                        </div>
-                        <div class="info">
-                            [59.88, 30.25]
-                        </div>
-                    </li>
-                </ul>
-            </div>
-
-        </li>
-        <li class="city">
-            <div class="main_info">
-                <h3 class="city_name">
-                    Moscow
-                </h3>
-                <div class="degrees">
-                    8°C
-                </div>
-                <img src="weatherforec.jpg" alt="sunny">
-                <button class="button_sign">&times;</button>
-            </div>
-            <div class="weather_info">
-                <ul>
-                    <li class="weather_line">
-                        <div class="name">
-                            Wind
-                        </div>
-                        <div class="info">
-                            Moderate breeze, 6.0 m/s, North-northwest
-                        </div>
-                    </li>
-                    <li class="weather_line">
-                        <div class="name">
-                            Cloudiness
-                        </div>
-                        <div class="info">
-                            Broken clouds
-                        </div>
-                    </li>
-                    <li class="weather_line">
-                        <div class="name">
-                            Pressure
-                        </div>
-                        <div class="info">
-                            1013 hpa
-                        </div>
-                    </li>
-                    <li class="weather_line">
-                        <div class="name">
-                            Humidity
-                        </div>
-                        <div class="info">
-                            52 %
-                        </div>
-                    </li>
-                    <li class="weather_line">
-                        <div class="name">
-                            Coordinates
-                        </div>
-                        <div class="info">
-                            [59.88, 30.25]
-                        </div>
-                    </li>
-                </ul>
-            </div>
-
-        </li>
-        <li class="city">
-            <div class="main_info">
-                <h3 class="city_name">
-                    Moscow
-                </h3>
-                <div class="degrees">
-                    8°C
-                </div>
-                <img src="weatherforec.jpg" alt="sunny">
-                <button class="button_sign">&times;</button>
-            </div>
-            <div class="weather_info">
-                <ul>
-                    <li class="weather_line">
-                        <div class="name">
-                            Wind
-                        </div>
-                        <div class="info">
-                            Moderate breeze, 6.0 m/s, North-northwest
-                        </div>
-                    </li>
-                    <li class="weather_line">
-                        <div class="name">
-                            Cloudiness
-                        </div>
-                        <div class="info">
-                            Broken clouds
-                        </div>
-                    </li>
-                    <li class="weather_line">
-                        <div class="name">
-                            Pressure
-                        </div>
-                        <div class="info">
-                            1013 hpa
-                        </div>
-                    </li>
-                    <li class="weather_line">
-                        <div class="name">
-                            Humidity
-                        </div>
-                        <div class="info">
-                            52 %
-                        </div>
-                    </li>
-                    <li class="weather_line">
-                        <div class="name">
-                            Coordinates
-                        </div>
-                        <div class="info">
-                            [59.88, 30.25]
-                        </div>
-                    </li>
-                </ul>
-            </div>
-
-        </li>
-        <li class="city">
-            <div class="main_info">
-                <h3 class="city_name">
-                    Moscow
-                </h3>
-                <div class="degrees">
-                    8°C
-                </div>
-                <img src="weatherforec.jpg" alt="sunny">
-                <button class="button_sign">&times;</button>
-            </div>
-            <div class="weather_info">
-                <ul>
-                    <li class="weather_line">
-                        <div class="name">
-                            Wind
-                        </div>
-                        <div class="info">
-                            Moderate breeze, 6.0 m/s, North-northwest
-                        </div>
-                    </li>
-                    <li class="weather_line">
-                        <div class="name">
-                            Cloudiness
-                        </div>
-                        <div class="info">
-                            Broken clouds
-                        </div>
-                    </li>
-                    <li class="weather_line">
-                        <div class="name">
-                            Pressure
-                        </div>
-                        <div class="info">
-                            1013 hpa
-                        </div>
-                    </li>
-                    <li class="weather_line">
-                        <div class="name">
-                            Humidity
-                        </div>
-                        <div class="info">
-                            52 %
-                        </div>
-                    </li>
-                    <li class="weather_line">
-                        <div class="name">
-                            Coordinates
-                        </div>
-                        <div class="info">
-                            [59.88, 30.25]
-                        </div>
-                    </li>
-                </ul>
-            </div>
-
-        </li>
-        <li class="city">
-            <div class="main_info">
-                <h3 class="city_name">
-                    Moscow
-                </h3>
-                <div class="degrees">
-                    8°C
-                </div>
-                <img src="weatherforec.jpg" alt="sunny">
-                <button class="button_sign">&times;</button>
-            </div>
-            <div class="weather_info">
-                <ul>
-                    <li class="weather_line">
-                        <div class="name">
-                            Wind
-                        </div>
-                        <div class="info">
-                            Moderate breeze, 6.0 m/s, North-northwest
-                        </div>
-                    </li>
-                    <li class="weather_line">
-                        <div class="name">
-                            Cloudiness
-                        </div>
-                        <div class="info">
-                            Broken clouds
-                        </div>
-                    </li>
-                    <li class="weather_line">
-                        <div class="name">
-                            Pressure
-                        </div>
-                        <div class="info">
-                            1013 hpa
-                        </div>
-                    </li>
-                    <li class="weather_line">
-                        <div class="name">
-                            Humidity
-                        </div>
-                        <div class="info">
-                            52 %
-                        </div>
-                    </li>
-                    <li class="weather_line">
-                        <div class="name">
-                            Coordinates
-                        </div>
-                        <div class="info">
-                            [59.88, 30.25]
-                        </div>
-                    </li>
-                </ul>
-            </div>
-
-        </li>
-    </ul>
 </main>
+
+<template id="main_city_now">
+    <div class="left_main_city">
+        <h2 class="city_name"></h2>
+        <div class="main_info">
+            <img class="icon-weather" src="" alt="">
+            <div class="degrees"></div>
+        </div>
+    </div>
+    <div class="weather_info">
+        <ul>
+            <li class="wind_line">
+                <div class="name">Wind</div>
+                <div class="info"></div>
+            </li>
+            <li class="cloudiness_line">
+                <div class="name">Cloudiness</div>
+                <div class="info"></div>
+            </li>
+            <li class="pressure_line">
+                <div class="name">Pressure</div>
+                <div class="info"></div>
+            </li>
+            <li class="humidity_line">
+                <div class="name">Humidity</div>
+                <div class="info"></div>
+            </li>
+            <li class="coordinates_line">
+                <div class="name">Coordinates</div>
+                <div class="info"></div>
+            </li>
+        </ul>
+    </div>
+</template>
+
+<template id="main_city_waiting">
+    <section class="waiting">
+        <h3>Wait, data is loading...</h3>
+        <img class="refresh-icon" src='img/refresh.png' alt="refresh.png">
+    </section>
+</template>
+
+<template id="city">
+    <li class="weather_city">
+        <div class="main_info">
+            <h3 class="city_name"></h3>
+            <div class="degrees"></div>
+            <img class="icon-weather" src="" alt="">
+            <button class="delete-button">×</button>
+        </div>
+        <div class="weather_info">
+            <ul>
+                <li class="wind_line">
+                    <div class="name">Wind</div>
+                    <div class="info"></div>
+                </li>
+                <li class="cloudiness_line">
+                    <div class="name">Cloudiness</div>
+                    <div class="info"></div>
+                </li>
+                <li class="pressure_line">
+                    <div class="name">Pressure</div>
+                    <div class="info"></div>
+                </li>
+                <li class="humidity_line">
+                    <div class="name">Humidity</div>
+                    <div class="info"></div>
+                </li>
+                <li class="coordinates_line">
+                    <div class="name">Coordinates</div>
+                    <div class="info"></div>
+                </li>
+            </ul>
+        </div>
+    </li>
+
+</template>
+
+<template id="city_waiting">
+    <li class="weather_city">
+        <div class="main_info">
+            <h3 class="city_name"></h3>
+            <button class="delete-button">×</button>
+            <div class="weather_info">
+                <div class="waiting">
+                    <h3>Wait, data is loading...</h3>
+                    <img class="refresh-icon" src='img/refresh.png' alt="refresh.png">
+                </div>
+            </div>
+        </div>
+    </li>
+</template>
+
+<script type="text/javascript" src="js/main.js"></script>
+
 </body>
 
 </html>
