@@ -1,6 +1,6 @@
 const weatherHereWaiting = () => {
     const weatherHereWaitingTemplate = document.querySelector('#main_city_waiting');
-    return document.importNode(weatherHereWaitingTemplate.content, true)
+    return document.importNode(weatherHereWaitingTemplate.content, true);
 };
 
 const weatherCityWaiting = (cityName) => {
@@ -8,14 +8,14 @@ const weatherCityWaiting = (cityName) => {
     const newWeatherCityWaiting = document.importNode(weatherCityWaitingTemplate.content, true);
     newWeatherCityWaiting.querySelector('.city_name').innerText = cityName;
     newWeatherCityWaiting.firstElementChild.setAttribute('cityName', cityName);
-    return newWeatherCityWaiting
+    return newWeatherCityWaiting;
 };
 
 const weatherHereFunc = (weather) => {
     const weatherHereTemplate = document.querySelector('#main_city_now');
     const newWeatherHere = document.importNode(weatherHereTemplate.content, true);
     setWeatherParameters(newWeatherHere, weather);
-    return newWeatherHere
+    return newWeatherHere;
 };
 
 const weatherCityFunc = (weather) => {
@@ -24,7 +24,7 @@ const weatherCityFunc = (weather) => {
     setWeatherParameters(newWeatherCity, weather);
     newWeatherCity.querySelector('.delete-button').addEventListener('click', removeFromFavorites);
     newWeatherCity.firstElementChild.setAttribute('cityName', weather.name);
-    return newWeatherCity
+    return newWeatherCity;
 };
 
 async function updateWeatherHere() {
@@ -35,12 +35,12 @@ async function updateWeatherHere() {
         weatherAPI.getByCityCoordinates(coordinates)
             .then(weather => {
                 weatherHere.innerHTML = "";
-                weatherHere.append(weatherHereFunc(weather))
-            })
+                weatherHere.append(weatherHereFunc(weather));
+            }).catch(() => errorProcessing('Something went wrong. Try again.'))
     }, () => weatherAPI.getByCityName("Saint%20Petersburg").then(weather => {
         weatherHere.innerHTML = "";
-        weatherHere.append(weatherHereFunc(weather))
-    }))
+        weatherHere.append(weatherHereFunc(weather));
+    }).catch(() => errorProcessing('Something went wrong. Try again.')))
 }
 
 const setWeatherParameters = (element, weatherObject) => {
@@ -53,7 +53,7 @@ const setWeatherParameters = (element, weatherObject) => {
     pressure.innerHTML = `${weatherObject.main.pressure} hpa`;
     humidity.innerHTML = `${weatherObject.main.humidity}%`;
     coordinates.innerHTML = `[${weatherObject.coord.lat.toFixed(2)}, ${weatherObject.coord.lon.toFixed(2)}]`;
-    return element
+    return element;
 };
 
 const getWeatherParameters = weatherCity => {
@@ -73,7 +73,7 @@ const removeFromFavorites = evt => {
     const thisCityName = evt.currentTarget.parentElement.firstElementChild.innerHTML;
     const favoritesList = JSON.parse(localStorage.getItem('favoritesList'));
     localStorage.setItem('favoritesList', JSON.stringify(favoritesList.filter(cityName => cityName !== thisCityName)));
-    updateWeatherFavorites()
+    updateWeatherFavorites();
 };
 
 const addToFavorites = async evt => {
@@ -81,21 +81,32 @@ const addToFavorites = async evt => {
     const searchInput = document.getElementById('add_new_city');
     const cityName = searchInput.value.trim();
     searchInput.value = '';
-    const response = await weatherAPI.getByCityName(cityName);
     let exist = false;
-
     const list = JSON.parse(localStorage.getItem('favoritesList'));
-    for (let i = 0; i < list.length; i++)
-        if (list[i] === cityName) {
+
+    for (let i = 0; i < list.length; i++) {
+        if (list[i].toLowerCase() === cityName.toLowerCase()) {
             exist = true;
             break;
         }
+    }
+    console.log(exist);
     if (!exist) {
+        try {
+            const response = await weatherAPI.getByCityName(cityName);
+        } catch (e) {
+            errorProcessing('Something went wrong. Try again.')
+        }
+        console.log(response.cod);
         if (response.cod === 200) {
             const favoritesList = JSON.parse(localStorage.getItem('favoritesList'));
             localStorage.setItem('favoritesList', JSON.stringify([response.name, ...favoritesList]));
-            updateWeatherFavorites()
+            updateWeatherFavorites();
+        } else {
+            errorProcessing('City not found')
         }
+    } else {
+        errorProcessing('This city is already in list');
     }
 };
 
@@ -105,13 +116,14 @@ const updateWeatherFavorites = () => {
     for (let city of favoritesList) {
         const cityName = city;
         if (!weatherCity.querySelector(`.weather_city[cityName=${cityName}]`)) {
-            citiesToAdd.push(cityName)
+            citiesToAdd.push(cityName);
         }
     }
     for (const cityElement of weatherCity.children) {
         const thisCityName = cityElement.querySelector('.city_name').innerText;
-        if (!(favoritesList.includes(thisCityName)))
-            citiesElementToRemove.push(cityElement)
+        if (!(favoritesList.includes(thisCityName))) {
+            citiesElementToRemove.push(cityElement);
+        }
     }
     citiesElementToRemove.forEach(cityElementToRemove => weatherCity.removeChild(cityElementToRemove));
     citiesToAdd.forEach(cityToAdd => {
@@ -120,5 +132,16 @@ const updateWeatherFavorites = () => {
         weatherAPI.getByCityName(cityToAdd)
             .then(weather =>
                 weatherCity.replaceChild(weatherCityFunc(weather), newCityElement))
+            .catch(() => errorProcessing('Something went wrong. Try again.'));
     })
+};
+
+const errorProcessing = (errorMessage) => {
+    console.log('in error processing');
+    let errorDiv = document.getElementById('error');
+    console.log(errorDiv);
+    errorDiv.innerHTML = errorMessage;
+    setTimeout(() => {
+        errorDiv.innerHTML = '';
+    }, 2000);
 };

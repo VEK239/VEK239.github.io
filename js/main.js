@@ -1,8 +1,11 @@
 const weatherAPI = new WeatherAPI();
 const weatherHere = document.querySelector('.main_city');
 const weatherCity = document.querySelector('.other_cities');
-if (!localStorage.getItem('favoritesList'))
+if (!localStorage.getItem('favoritesList')) {
     localStorage.setItem('favoritesList', '[]');
+}
+
+window.onoffline = (e) => errorProcessing('Internet connection lost. Try again.');
 
 updateWeatherHere();
 updateWeatherFavorites();
@@ -20,10 +23,10 @@ for(let i = 0; i < updateButtonSmall.length; i++){
     }
 }
 
-const addCityButton = document.querySelectorAll('.button_sign');
+const addCityButton = document.querySelectorAll('.add_new_city');
 for(let i = 0; i < addCityButton.length; i++){
     if (addCityButton){
-        addCityButton[i].addEventListener('click', addToFavorites);
+        addCityButton[i].addEventListener('submit', addToFavorites);
     }
 }
 
