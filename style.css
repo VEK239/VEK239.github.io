@@ -20,7 +20,13 @@ header {
     margin-top: 2%;
     margin-bottom: 2%;
     display: grid;
-    grid-template-columns: 50% 50%;
+    grid-template-columns: 25% 25% 50%;
+}
+
+#error {
+    margin: auto;
+    height: 25%;
+    color: darkred;
 }
 
 .update_button_sign {
@@ -200,14 +206,6 @@ h2 {
     .city .main_info .degrees {
         font-size: 40px;
         color: #7c7c7c;
-    }
-
-    .favorite_part {
-        margin-top: 2%;
-        margin-bottom: 2%;
-        display: grid;
-        grid-template-columns: 100%;
-        grid-template-rows: 50% 50%;
     }
 
     .add_new_city {
