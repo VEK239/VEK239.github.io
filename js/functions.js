@@ -92,8 +92,9 @@ const addToFavorites = async evt => {
     }
     console.log(exist);
     if (!exist) {
+        let response;
         try {
-            const response = await weatherAPI.getByCityName(cityName);
+            response = await weatherAPI.getByCityName(cityName);
         } catch (e) {
             errorProcessing('Something went wrong. Try again.')
         }
