@@ -1,3 +1,7 @@
+const replaceSpacesAndEtc = (cityName) => {
+    return cityName.replace(/\s/g,"_");
+};
+
 const weatherHereWaiting = () => {
     const weatherHereWaitingTemplate = document.querySelector('#main_city_waiting');
     return document.importNode(weatherHereWaitingTemplate.content, true);
@@ -7,7 +11,7 @@ const weatherCityWaiting = (cityName) => {
     const weatherCityWaitingTemplate = document.querySelector('#city_waiting');
     const newWeatherCityWaiting = document.importNode(weatherCityWaitingTemplate.content, true);
     newWeatherCityWaiting.querySelector('.city_name').innerText = cityName;
-    newWeatherCityWaiting.firstElementChild.setAttribute('cityName', cityName);
+    newWeatherCityWaiting.firstElementChild.setAttribute('cityName', replaceSpacesAndEtc(cityName));
     return newWeatherCityWaiting;
 };
 
@@ -23,7 +27,7 @@ const weatherCityFunc = (weather) => {
     const newWeatherCity = document.importNode(weatherCityTemplate.content, true);
     setWeatherParameters(newWeatherCity, weather);
     newWeatherCity.querySelector('.delete-button').addEventListener('click', removeFromFavorites);
-    newWeatherCity.firstElementChild.setAttribute('cityName', weather.name);
+    newWeatherCity.firstElementChild.setAttribute('cityName', replaceSpacesAndEtc(weather.name));
     return newWeatherCity;
 };
 
@@ -90,7 +94,6 @@ const addToFavorites = async evt => {
             break;
         }
     }
-    console.log(exist);
     if (!exist) {
         let response;
         try {
@@ -98,11 +101,17 @@ const addToFavorites = async evt => {
         } catch (e) {
             errorProcessing('Something went wrong. Try again.')
         }
-        console.log(response.cod);
+        console.log(response);
         if (response.cod === 200) {
             const favoritesList = JSON.parse(localStorage.getItem('favoritesList'));
-            localStorage.setItem('favoritesList', JSON.stringify([response.name, ...favoritesList]));
-            updateWeatherFavorites();
+            let coordinates = {coords: {latitude: response.coord.lat, longitude: response.coord.lon}};
+            const responseWithName = await weatherAPI.getByCityCoordinates(coordinates);
+            if (!(favoritesList.includes(responseWithName.name))) {
+                localStorage.setItem('favoritesList', JSON.stringify([responseWithName.name, ...favoritesList]));
+                updateWeatherFavorites();
+            } else {
+                errorProcessing('This city is already in list');
+            }
         } else {
             errorProcessing('City not found')
         }
@@ -115,8 +124,8 @@ const updateWeatherFavorites = () => {
     const favoritesList = JSON.parse(localStorage.getItem('favoritesList'));
     let citiesToAdd = [], citiesElementToRemove = [];
     for (let city of favoritesList) {
-        const cityName = city;
-        if (!weatherCity.querySelector(`.weather_city[cityName=${cityName}]`)) {
+        const cityName = city.toString();
+        if (!weatherCity.querySelector(`.weather_city[cityName=${replaceSpacesAndEtc(cityName)}]`)) {
             citiesToAdd.push(cityName);
         }
     }
@@ -129,7 +138,7 @@ const updateWeatherFavorites = () => {
     citiesElementToRemove.forEach(cityElementToRemove => weatherCity.removeChild(cityElementToRemove));
     citiesToAdd.forEach(cityToAdd => {
         weatherCity.append(weatherCityWaiting(cityToAdd));
-        const newCityElement = weatherCity.querySelector(`.weather_city[cityName=${cityToAdd}]`);
+        const newCityElement = weatherCity.querySelector(`.weather_city[cityName=${replaceSpacesAndEtc(cityToAdd)}]`);
         weatherAPI.getByCityName(cityToAdd)
             .then(weather =>
                 weatherCity.replaceChild(weatherCityFunc(weather), newCityElement))
@@ -138,9 +147,7 @@ const updateWeatherFavorites = () => {
 };
 
 const errorProcessing = (errorMessage) => {
-    console.log('in error processing');
     let errorDiv = document.getElementById('error');
-    console.log(errorDiv);
     errorDiv.innerHTML = errorMessage;
     setTimeout(() => {
         errorDiv.innerHTML = '';
